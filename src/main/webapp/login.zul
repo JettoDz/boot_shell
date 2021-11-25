@@ -1,0 +1,32 @@
+<?page title="Login" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:n="xhtml" xmlns:w="client">
+	<window title="Login" border="none">
+		<html:form id="f" name="f" action="access_request" method="POST" xmlns:html="native">
+				
+			<div>
+				<textbox id="usuario" type="text" name="username" placeholder="Usuario" />
+			</div>
+			     
+			<div>
+				<textbox type="password" name="password" placeholder="Contraseña" />
+			</div>
+			
+			<div style="color: red">
+				<label if="${param.lfld == 1}"
+					style="font-family: 'Open Sans', font-size: 15px"
+					value="*Este correo no ha sido registrado" />
+					<!-- Revisar config de seguridad si llega a dar error 2. -->
+				<label if="${param.lfld == 2}" 
+					style="font-family: 'Open Sans', font-size: 15px"
+					value="*Contraseña incorrecta" />
+			</div>
+			<div>
+				<n:input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<button type="submit">
+					Entrar
+				</button>
+			</div>
+			 
+		</html:form>
+	</window>
+</zk>
